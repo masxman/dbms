@@ -27,6 +27,7 @@ INSERT INTO EMP (ENO,ENAME,EBDATE,ADDRESS,GENDER,SALARY,DNO)
 Values (1003,'VINAY','1990-11-26','HUBLI','M', 3000, 2);
 INSERT INTO EMP (ENO,ENAME,EBDATE,ADDRESS,GENDER,SALARY,DNO)
 Values (1008,'RAJESH','1910-02-02','BANGALORE','M', 25000, 2);
+
 Without Check Option
 create view emp_dept as
 (select E.ENO,E.ENAME,E.SALARY,E.DNo,D.DNAME
@@ -36,6 +37,7 @@ insert into emp_dept (ENO, ENAME, SALARY, DNO)
 Values (1009,'SRIKANTH', 9000, 5);
 Select * from emp_dept;
 DROP VIEW emp_dept;
+
 ⦁ With Check Option: - The with CHECK OPTION clause is used to prevent the insertion
 of rows in the view where the condition in the WHERE clause in CREATE VIEW
 statement is not satisfied.
@@ -49,5 +51,5 @@ select * from emp_view;
 {Step 5 :- insert a row where employee salary is greater than 50000.This will give an
 error.}
 insert into emp_view (ENO,ENAME,SALARY)
-values(1011,'SNIGDHA',99999);
+values(1019,'SNIGDHA',99999);
 Drop view emp_view;
