@@ -1,0 +1,78 @@
+create table Branch
+(Brid int(5) primary key,
+BRname varchar(5) not null,
+Hod varchar(10));
+
+create table student
+(usn varchar(15) primary key,
+Name varchar(15) not null,
+Address varchar(15),
+Brid int(5) references Branch,
+sem varchar(10));
+
+create table Book
+(Bkid varchar(10) primary key,
+BKName varchar(15) not null,
+AID varchar(10) references author,
+publisher varchar(20) not null,
+Brid int(5) references Branch);
+
+create table Borrow
+(usn varchar(10) references student,
+Bkid varchar(10) references Book,
+Borrow_Date date,primary key(usn,Bkid));
+
+create table Author
+(Aid varchar(15) primary key,
+AName varchar(15) not null,
+country varchar(15),
+age Int(6));
+
+insert into Branch(Brid,Brname,Hod)values(10,'BCA','Santhosh S');
+insert into Branch(Brid,Brname,Hod)values(20,'BBA','Rashmi E');
+insert into Branch(Brid,Brname,Hod)values(30,'BCOM','Ramesh A');
+insert into Branch(Brid,Brname,Hod)values(40,'BSC','Aditya P');
+insert into Branch(Brid,Brname,Hod)values(50,'BA','Asha P');
+
+Insert into student (usn,name,address,brid,sem)values('SCAS202201','ANURADHA','JAYANAGAR','10','II SEM');
+insert into student (usn,name,address,brid,sem)values('SCAS202202','MANJULA','BASVANGUDI','10','II SEM');
+insert into student (usn,name,address,brid,sem)values('SCAS202203','LAKSHMI','BASVANGUDI','10','IV SEM');
+insert into student (usn,name,address,brid,sem)values('SCAC202203','RENUKA','HANUMANTHNAGAR','20','II SEM');
+insert into student (usn,name,address,brid,sem)values('SCAC202204','ARUN','JPNAGAR','30','II SEM');
+insert into student (usn,name,address,brid,sem)values('SCAS202204','ABHI','GIRINAGAR','40','II SEM');
+insert into student (usn,name,address,brid,sem)values('SCAA202201','DEEPTI','GIRINAGAR','50','IV SEM');
+
+insert into AUTHOR (AID,ANAME,COUNTRY,AGE)values('NEPCOMP01','ARUNA','INDIA',36);
+insert into AUTHOR (AID,ANAME,COUNTRY,AGE)values('NEPCOMP02','SUMA','INDIA',38);
+insert into AUTHOR AID,ANAME,COUNTRY,AGE)values('NEPCOMM02','SENGEETHA','INDIA',42);
+insert into AUTHOR (AID,ANAME,COUNTRY,AGE)values('NEPCOMM01','DILIP','INDIA',39);
+insert into AUTHOR (AID,ANAME,COUNTRY,AGE)values('NEPS101','SHEKAR','INDIA',49);
+
+insert into Book (Bkid,Bkname,Aid,publisher,Brid)values('NEPDBMS','DBMS','NEPCOMP02','SKYWARD',10);
+insert into Book (Bkid,Bkname,Aid,publisher,Brid)values('NEPSE','SE','NEPCOMP02','SKYWARD',10);
+insert into Book (Bkid,Bkname,Aid,publisher,Brid)values('NEPJAVA','JAVA','NEPCOMM01','OXFORD',20);
+insert into Book (Bkid,Bkname,Aid,publisher,Brid)values('NEPMATHS','MATHS','NEPSC101','OXFORD',30);
+insert into Book (Bkid,Bkname,Aid,publisher,Brid)values('NEPPHY','PHYSICS','NEPCOMM02','SHREE',40);
+SELECT * FROM BOOK;
+
+insert into Borrow(usn,Bkid,Borrow_date)values('SCAS202201','NEPMATHS','2022-06-05');
+insert into Borrow(usn,Bkid,Borrow_date)values('SCAS202201','NEPSE','2022-05-28');
+insert into Borrow(usn,Bkid,Borrow_date)values('SCAS202204','NEPMATHS','2022-06-06');
+insert into Borrow(usn,Bkid,Borrow_date)values('SCAS202201','NEPPHY','2022-06-12');
+insert into Borrow(usn,Bkid,Borrow_date)values('SCAS202203','NEPPHY','2022-06-18');
+insert into Borrow(usn,Bkid,Borrow_date)values('SCAS202201','NEPMATH','2022-06-05');
+Insert into Borrow(usn,Bkid,Borrow_date)values('SCAS202201','NEPJAVA','2022-06-22');
+
+//List the details of students who are all studying in 2nd sem BCA.
+select * from student S,Branch BR
+where S.Brid=BR.Brid 
+and S.sem='II sem'
+and BR.Brname='BCA';
+
+//List the students who are not borrowed any books.
+select * from student S 
+where S.usn not in (select B.usn from Borrow B);
+
+//Display the number of books written by each author.
+select A.AName,count(distinct BK.Bkid) as "No_of_Books"From Author A,Book BK where A.Aid=Bk.Aid group by A.AName;
+
