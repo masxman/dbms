@@ -1,32 +1,33 @@
 create table Branch
 (Brid int(5) primary key,
 BRname varchar(5) not null,
-Hod varchar(10));
+Hod varchar(10));
 
 create table student
 (usn varchar(15) primary key,
 Name varchar(15) not null,
 Address varchar(15),
 Brid int(5) references Branch,
-sem varchar(10));
-
-create table Book
-(Bkid varchar(10) primary key,
-BKName varchar(15) not null,
-AID varchar(10) references author,
-publisher varchar(20) not null,
-Brid int(5) references Branch);
-
-create table Borrow
-(usn varchar(10) references student,
-Bkid varchar(10) references Book,
-Borrow_Date date,primary key(usn,Bkid));
+sem varchar(10));
 
 create table Author
 (Aid varchar(15) primary key,
 AName varchar(15) not null,
 country varchar(15),
-age Int(6));
+age Int(6));
+
+create table Book
+(Bkid varchar(10) primary key,
+BKName varchar(15) not null,
+AID varchar(10) references Author,  -- Corrected table reference to "Author"
+publisher varchar(20) not null,
+Brid int(5) references Branch);
+
+create table Borrow
+(usn varchar(10) references student,
+Bkid varchar(10) references Book,
+Borrow_Date date,
+primary key(usn, Bkid));
 
 insert into Branch(Brid,Brname,Hod)values(10,'BCA','Santhosh S');
 insert into Branch(Brid,Brname,Hod)values(20,'BBA','Rashmi E');
