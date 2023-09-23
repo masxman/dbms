@@ -35,7 +35,7 @@ Values (1008,'RAJESH','1910-02-02','BANGALORE','M', 25000, 2);
 queries:
 select E.Ename from emp e
 where exists(select D.DNo from dept d
-where E.dno=D.dno and E.dno and E.dno=5);
+where E.dno=D.dno and E.dno and E.dno=4);
 
 select D.DNAME,count (*) from EMP E,DEPT D
 WHERE E.DNo=D.DNo group by D.DNAME HAVING COUNT(*)>2;
