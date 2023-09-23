@@ -1,0 +1,41 @@
+Create table DEPT
+(DNO int (4) primary key,
+DNAME varchar (20) Not Null,
+DLOCATION varhcar (20));
+Desc DEPT;
+
+Create table EMP
+(ENO int (6) primary key,
+ENAME varchar (20) Not Null,
+EBDATE date,
+ADRESS varchar (20),
+GENDER char (3),
+SALARY int (10) not null,
+DNO int (4) references dept);
+Desc EMP;
+
+Insert into dept (DNO, DNAME, DLOCATION) values (2,’ACCOUNTS’, JAYANAGAR’);
+Insert into dept (DNO, DNAME, DLOCATION) values (4,’RESEARCH’, KENGERI’);
+INSERT INTO DEPT (DNO, DNAME, DLOCATION) values (5,'ADMIN','SOUTHEND');
+select * from dept;
+
+INSERT INTO EMP (ENO, ENAME, EBDATE,ADDRESS,GENDER,SALARY,DNO)
+Values (1001,'ANIRUDH','1990-01-14','BANGALORE','M', 45000, 4);
+INSERT INTO EMP (ENO,ENAME,EBDATE,ADDRESS,GENDER,SALARY,DNO)
+Values (1004,'LAKSHMI','1998-03-04','MYSORE','F', 5500, 4);
+INSERT INTO EMP (ENO,ENAME,EBDATE,ADDRESS,GENDER,SALARY,DNO)
+Values (1002,'SINHCANA','1990-12-22','MANGALORE','F', 5000, 2);
+INSERT INTO EMP (ENO,ENAME,EBDATE,ADDRESS,GENDER,SALARY,DNO)
+Values (1007,'PRASHANT','1989-12-26','DHARWARD','M', 20000, 4);
+INSERT INTO EMP (ENO,ENAME,EBDATE,ADDRESS,GENDER,SALARY,DNO)
+Values (1003,'VINAY','1990-11-26','HUBLI','M', 3000, 2);
+INSERT INTO EMP (ENO,ENAME,EBDATE,ADDRESS,GENDER,SALARY,DNO)
+Values (1008,'RAJESH','1910-02-02','BANGALORE','M', 25000, 2);
+
+queries:
+select E.Ename from emp e
+where exists(select D.DNo from dept d
+where E.dno=D.dno and E.dno and E.dno=5);
+
+select D.DNAME,count (*) from EMP E,DEPT D
+WHERE E.DNo=D.DNo group by D.DNAME HAVING COUNT(*)>2;
