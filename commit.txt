@@ -1,0 +1,31 @@
+create table Product (PID int (10) primary key, Name varchar2 (20) Not Null, Price int (8,
+2));
+create table purchase (PO int (10) primary key, PRODUCT_ID int (10) references Product
+(PID), Qty int (5));
+desc Product;
+desc Purchase;
+Insert into Product (PID, NAME, PRICE) values (10,’PRINTER’, 20000);
+Insert into Product (PID, NAME, PRICE) values (20,’KEYBOARD’, 20000);
+Insert into Product (PID, NAME, PRICE) values (30,’MONITOR’, 15000);
+Insert into Product (PID, NAME, PRICE) values (40,’TABLE’, 14000);
+Insert into Product (PID, NAME, PRICE) values (10,’SCANNER’, 20000);
+Insert into Purchase (PO, PRODUCT_ID, ID_Qty) values (101, 10, 25);
+Insert into Purchase (PO, PRODUCT_ID, ID_Qty) values (102, 40, 20);
+Insert into Purchase (PO, PRODUCT_ID, ID_Qty) values (107, 30, 40);
+Insert into Purchase (PO, PRODUCT_ID, ID_Qty) values (104, 40, 50);
+Insert into Purchase (PO, PRODUCT_ID, ID_Qty) values (105, 40, 10);
+select * from Product;
+select * from Purchase;
+Update Product set Name=’CAMERA’ where PID=40;
+select * from Product;
+DELETE form Product where PID=50;
+select * from Product;
+Insert into Product (PID, Name, Price) values (50,’MOBILE’, 35000);
+Insert into Product (PID, Name, Price) values (50,’LAPTOP’, 70000);
+commit;
+select * from Product;
+savepoint S1;
+Insert into Product (PID, Name, Price) values (50,’TABLE’, 50000);
+Insert into Product (PID, Name, Price) values (50,’CHAIR’, 25000);
+Rollback to S1;
+select * from Product;
