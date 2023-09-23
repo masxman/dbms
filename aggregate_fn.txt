@@ -1,0 +1,28 @@
+Create table salarydB
+(ENO varchar(8) primary key,
+NAME varchar(15) Not Null,
+DEPT varhcar(10),
+DOJ Date,
+Salary float(10,2)
+);
+Desc salarydb;
+select * from salarydb;
+INSERT INTO salarydb values (‘Sc1010’,’Ahana’,’HR’,’2010-02-15’, 60000);
+INSERT INTO salarydb values (‘Sc1011’,’Ramesh’,’Finance’,’2010-02-15’, 60000);
+INSERT INTO salarydb values (‘Sc1013’,’Naveen’,’Marketing’,’2010-02-15’, 60000);
+INSERT INTO salarydb values (‘Sc1014’,’Anagha’,’HR’,’2012-04-14’, 35000);
+INSERT INTO salarydb values (‘Sc1015’,’Rushank’,’Admin’,’2011-03-11’, 55000);
+INSERT INTO salarydb values (‘Sc1016’,’Rushank’,’Finance’,’2008-06-04’, 25000);
+Select * from salarydb;
+select Eno,salary from salarydb;
+select sum (salary) as “TOTAL_SALARY” from salarydb;
+select dept, sum(salary) as "TOTAL_SALARY",
+ AVG(salary) as "AVERAGE_SALARY"
+ from salarydb group by dept;
+select dept,count(*) as "NUMBER_OF_EMPLOYEES" from salarydb group by dept;
+select * from salarydb order by DOJ ASC;
+select * from salarydb order by DOJ DESC;
+select max(salary) as "HIGHEST_SALARY" from salarydb;
+select min(salary) as "LEAST_SALARY" from salarydb;
+select * from salarydb
+where nam='rushank'and salary>50000;
